@@ -1,7 +1,15 @@
+import * as React from 'react';
 import { useState } from "react";
 import { Modal, Button, Text, Input } from "@nextui-org/react";
 
-export const AddCategoryModal = ({ closeModal, visible, addCategory }) => {
+
+export interface AddCategoryModalProps {
+    closeModal: () => void;
+    visible: boolean;
+    addCategory: (category: string) => void;
+}
+
+export const AddCategoryModal = ({ closeModal, visible, addCategory } : AddCategoryModalProps) => {
     const defaultValidationResult = {
         color: 'default',
         error: '',
@@ -11,7 +19,7 @@ export const AddCategoryModal = ({ closeModal, visible, addCategory }) => {
     const [category, setCategory] = useState('');
     const [validationResult, setValidationResult] = useState(defaultValidationResult);
 
-    const validateLength = (value) => {
+    const validateLength = (value: string) => {
         if (value.length < 3) {
             return {
                 isValid: false,
@@ -31,7 +39,7 @@ export const AddCategoryModal = ({ closeModal, visible, addCategory }) => {
         }
     }
 
-    const changeCategory = (value) => {
+    const changeCategory = (value: string) => {
         const { isValid, error } = validateLength(value);
 
         setValidationResult(

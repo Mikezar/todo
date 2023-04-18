@@ -4,17 +4,18 @@ import {
   Grid,
   Spacer
 } from '@nextui-org/react';
-
-import NewTask from "./components/NewTask";
+import * as React from 'react';
+import { NewTask } from "./components/NewTask";
 import Search from './components/Search';
 import TaskList from './components/TaskList';
 import { useEffect, useState } from 'react';
+import { ITask } from './types/domain';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [visibleTasks, setVisibleTasks] = useState([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [visibleTasks, setVisibleTasks] = useState<ITask[]>([]);
 
-  const addTask = (task) => {
+  const addTask = (task: ITask) => {
     setTasks([...tasks, task]);
   };
 
@@ -22,7 +23,7 @@ function App() {
     setVisibleTasks([...tasks]);
   }, [tasks]);
 
-  const search = (searchQuery) => {
+  const search = (searchQuery: string) => {
     var searchResults = tasks.filter((task) => {
       return task.name.includes(searchQuery) ||
         task.description.includes(searchQuery);

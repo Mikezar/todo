@@ -3,7 +3,7 @@ export interface ITask {
     description: string,
     time: string,
     date: string,
-    categories?: string[]
+    categories: string[]
 }
 
 export interface IResult {

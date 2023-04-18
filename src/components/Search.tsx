@@ -1,9 +1,14 @@
+import * as React from 'react';
 import {
     Input
 } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 
-export default function Search({ search }) {
+export interface SearchProps {
+    search: (s: string) => string;
+}
+
+const Search: Function = ({ search } : SearchProps) : JSX.Element => {
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
@@ -27,3 +32,5 @@ export default function Search({ search }) {
         </>
     );
 }
+
+export default Search;

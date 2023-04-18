@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState } from "react";
 import {
     Text,
@@ -14,7 +15,11 @@ import { AddCategoryModal } from "./AddCategoryModal"
 import { ITask } from "../types/domain"
 import "../App.css";
 
-export default function NewTask({ addTask }) {
+export interface TaskProps {
+    addTask: (task: ITask) => void;
+}
+
+export const NewTask = ({ addTask }: TaskProps) => {
     const defaultTask = {
         name: '',
         description: '',
@@ -31,12 +36,12 @@ export default function NewTask({ addTask }) {
         setVisible(false);
     };
 
-    const addCategory = (category) => {
+    const addCategory = (category: string) => {
         const categories = [...task.categories, category];
         setTask({ ...task, categories });
     }
 
-    const removeCategoryAt = (index) => {
+    const removeCategoryAt = (index: number) => {
         const filtered = task.categories.filter((_, i) => {
             return index != i;
         });
